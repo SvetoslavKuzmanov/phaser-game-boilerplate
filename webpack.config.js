@@ -9,7 +9,9 @@ var phaser = path.join(phaserModule, 'build/custom/phaser-split.js')
 var pixi = path.join(phaserModule, 'build/custom/pixi.js')
 var p2 = path.join(phaserModule, 'build/custom/p2.js')
 
-module.exports = {
+var minimize = process.argv.indexOf('--minimize') !== -1
+
+var config = {
     entry: {
         app: [
             'babel-polyfill',
@@ -47,11 +49,21 @@ module.exports = {
             'p2': p2
         }
     },
+    devtool: 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
-          filename: '../index.html',
-          template: 'src/index.html'
+            filename: '../index.html',
+            template: 'src/index.html'
         }),
         new DashboardPlugin(),
     ]
 }
+
+if (minimize) {
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    comments: false
+  }))
+  config.devtool = ''
+}
+
+module.exports = config;
