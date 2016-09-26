@@ -13,11 +13,11 @@ module.exports = {
     entry: {
         app: [
             'babel-polyfill',
-            path.resolve(__dirname, 'src/index.js')
+            path.resolve(__dirname, 'src/js/index.js')
         ]
     },
     output: {
-        path: 'build',
+        path: 'build/js',
         filename: "bundle.js"
     },
     module: {
@@ -48,7 +48,10 @@ module.exports = {
         }
     },
     plugins: [
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+          filename: '../index.html',
+          template: 'src/index.html'
+        }),
         new DashboardPlugin(),
     ]
 }
