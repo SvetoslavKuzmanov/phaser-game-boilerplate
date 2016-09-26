@@ -41,6 +41,9 @@ var config = {
             }
         }]
     },
+    stats: {
+        warnings: false
+    },
     resolve: {
         extensions: ['', '.js'],
         alias: {
@@ -53,17 +56,20 @@ var config = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: '../index.html',
-            template: 'src/index.html'
+            template: 'src/index.html',
         }),
         new DashboardPlugin(),
     ]
 }
 
 if (minimize) {
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    comments: false
-  }))
-  config.devtool = ''
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        comments: false,
+        compress: {
+            warnings: false
+        },
+    }))
+    config.devtool = ''
 }
 
 module.exports = config;
