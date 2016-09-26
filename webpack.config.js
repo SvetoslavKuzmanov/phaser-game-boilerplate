@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var DashboardPlugin = require('webpack-dashboard/plugin')
 
 // Phaser webpack config
 var phaserModule = path.join(__dirname, '/node_modules/phaser/')
@@ -46,5 +47,8 @@ module.exports = {
             'p2': p2
         }
     },
-    plugins: [new HtmlWebpackPlugin()]
+    plugins: [
+        new HtmlWebpackPlugin(),
+        new DashboardPlugin(),
+    ]
 }

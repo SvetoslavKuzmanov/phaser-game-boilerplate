@@ -4,7 +4,7 @@
   "description": "This is a boilerplate for building phaser games using webpack and babel as transpiler for es6.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --inline --open",
+    "start": "webpack-dashboard -- webpack-dev-server --inline --open",
     "build": "webpack"
   },
   "devDependencies": {
@@ -15,7 +15,8 @@
     "expose-loader": "^0.7.1",
     "html-webpack-plugin": "^2.22.0",
     "standard": "^8.0.0",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dashboard": "^0.2.0"
   },
   "author": "",
   "license": "ISC",
