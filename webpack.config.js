@@ -20,6 +20,7 @@ var config = {
     },
     output: {
         path: 'build/js',
+        publicPath: '/',
         filename: "bundle.js"
     },
     module: {
@@ -39,6 +40,9 @@ var config = {
             query: {
                 presets: ['es2015']
             }
+        }, {
+          test: /\.(png|jpg|jpeg|gif|woff)$/,
+          loader: 'file-loader?limit=8192'
         }]
     },
     stats: {
@@ -52,7 +56,7 @@ var config = {
             'p2': p2
         }
     },
-    devtool: 'source-map',
+    devtool: 'cheap-source-map',
     plugins: [
         new HtmlWebpackPlugin({
             filename: '../index.html',
