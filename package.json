@@ -19,7 +19,7 @@
     "webpack": "^1.13.2",
     "webpack-dashboard": "^0.2.0"
   },
-  "author": "",
+  "author": "Svetoslav Kuzmanov",
   "license": "ISC",
   "dependencies": {
     "phaser": "^2.6.2"

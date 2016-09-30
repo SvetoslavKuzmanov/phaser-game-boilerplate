@@ -19,7 +19,7 @@ var config = {
         ]
     },
     output: {
-        path: 'build/js',
+        path: path.join(__dirname, "build/js"),
         publicPath: '/',
         filename: "bundle.js"
     },
@@ -42,7 +42,7 @@ var config = {
             }
         }, {
           test: /\.(png|jpg|jpeg|gif|woff)$/,
-          loader: 'file-loader?limit=8192'
+          loader: 'file-loader?limit=8192&name=../assets/[name].[ext]'
         }]
     },
     stats: {
@@ -72,7 +72,8 @@ if (minimize) {
         compress: {
             warnings: false
         },
-    }))
+    }));
+    config.output.publicPath = '/js/';
     config.devtool = ''
 }
 
