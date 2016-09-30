@@ -20,7 +20,7 @@ var config = {
     },
     output: {
         path: path.join(__dirname, "build/js"),
-        publicPath: '/',
+        publicPath: '/js/',
         filename: "bundle.js"
     },
     module: {
@@ -41,8 +41,8 @@ var config = {
                 presets: ['es2015']
             }
         }, {
-          test: /\.(png|jpg|jpeg|gif|woff)$/,
-          loader: 'file-loader?limit=8192&name=../assets/[name].[ext]'
+            test: /\.(png|jpg|jpeg|gif|woff)$/,
+            loader: 'file-loader?limit=8192&name=../assets/[name].[ext]'
         }]
     },
     stats: {
@@ -56,14 +56,22 @@ var config = {
             'p2': p2
         }
     },
-    devtool: 'cheap-source-map',
     plugins: [
         new HtmlWebpackPlugin({
             filename: '../index.html',
             template: 'src/index.html',
         }),
         new DashboardPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            comments: false,
+            compress: {
+                warnings: false
+            },
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin(),
     ]
 }
 
 module.exports = config;
+
